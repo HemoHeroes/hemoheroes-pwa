@@ -1,6 +1,5 @@
 angular.module('hhV2', ['ngRoute', 'ngMap']) //ngMap
 .controller('mapBlood', function($scope, $http, NgMap){ //NgMap
-    $scope.teste = "asuhdahudauh";
     // $scope.markers = [
     //     {
     //         "clinicas": "-30.0442021,-51.2077004"

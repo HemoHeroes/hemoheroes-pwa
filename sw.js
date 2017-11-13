@@ -12,12 +12,13 @@ self.addEventListener('install', event => {
                 '/js/main.js',
                 '/bower_components/angular/angular.min.js',
                 '/bower_components/angular-route/angular-route.min.js',
-                '/bower_components/ngmap/build/scripts/ng-map.min.js'
+                '/bower_components/ngmap/build/scripts/ng-map.min.js',
+                'https://maps.google.com/maps/api/js?key=AIzaSyBw6r3WwodXcKsajsS9h9SSNvsHHdx13eI'
     		]).then(_ => {
     			console.log('INSTALLED ' + VERSION);
         		resolve();
     		}).catch(err => {
-    			console.erro('Não deu!', err);
+    			console.log('Não deu!', err);
     		})
     	})
     }))
@@ -42,7 +43,6 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url)
     const errorPage = './404.html'
     console.log('Requisitou: ', event.request.url)
-
     return event.respondWith(
         caches.match(event.request).then(response => {
         	return response || fetch(event.request).then(response => {
