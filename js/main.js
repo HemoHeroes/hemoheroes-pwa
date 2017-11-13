@@ -14,7 +14,7 @@ angular.module('hhV2', ['ngRoute', 'ngMap']) //ngMap
 
     $http({
         method: "GET",
-        url: "https://hemoheroes.com/api/user/bank"
+        url: "/api/user/bank"
     }).then(
         (success) => {
             $scope.markers = success.data.results;
