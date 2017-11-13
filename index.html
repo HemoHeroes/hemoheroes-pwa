@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#c0392b">
+  
+    <title>HemoHeroesm  v2.0 - Progressive Web App !!!</title>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+</head>
+<body id="allcontent" ng-app="hhV2">
+
+        <div ng-view></div>
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+<script src="/js/main.js"></script>
+<script>
+    if(!navigator.onLine){
+        document.getElementById('allcontent').innerHTML = "<h1> Está Ofline! </h1>"
+    }
+</script>
+<script>
+    if('serviceWorker' in navigator){
+        navigator
+        .serviceWorker
+        .register('/sw.js')
+        .then(
+            (registry) => {
+                console.log('Registry with success', registry.scope);
+            }
+        )
+        .catch(
+            (err) => {
+                console.log('Ops, error the registry service worker')
+            }
+        )
+    }
+</script>
+    
+</body>
+</html>

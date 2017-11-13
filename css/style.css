@@ -1,0 +1,7 @@
+body{
+    background-color: #353535;
+}
+
+ng-map{
+    height: 500px !important;
+}

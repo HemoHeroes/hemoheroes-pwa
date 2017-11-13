@@ -1,0 +1,34 @@
+{
+  "name": "hemoheroes-pwa",
+  "homepage": "https://github.com/HemoHeroes/hemoheroes-pwa",
+  "authors": [
+    "renanbastos93 <renanbastos.tec@gmail.com>"
+  ],
+  "description": "new version of the hemoheroes with pwa",
+  "main": "index.html",
+  "keywords": [
+    "hemoglobin",
+    "hemoglobina",
+    "heroes",
+    "hemoheroes",
+    "donation",
+    "blood",
+    "doação",
+    "de",
+    "sangue"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.6.6",
+    "angular-route": "^1.6.6",
+    "materialize": "^0.100.2",
+    "ngmap": "^1.18.4"
+  }
+}

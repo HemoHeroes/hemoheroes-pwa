@@ -1,0 +1,23 @@
+{
+    "name": "HemoHeroes @ v2.0",
+    "short_name": "HemoHeroes",
+    "start_url": "./",
+    "dir": "ltr",
+    "lang": "pt-BR",
+    "background_color": "#c0392b",
+    "theme_color": "#c0392b",
+    "description": "HemoHeroes - Ajudando a salvar mais vidas.",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "iamges/bg.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "iamges/bg.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
