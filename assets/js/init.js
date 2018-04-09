@@ -1,6 +1,7 @@
 (function($){
+  "use strict";
   $(function(){
-
+    
     $('.sidenav').sidenav();
     $('.parallax').parallax();
     $(".dropdown-button").dropdown(
@@ -11,6 +12,6 @@
         constrainWidth: false
       }
     );
-
+    
   }); // end of document ready
 })(jQuery); // end of jQuery name space

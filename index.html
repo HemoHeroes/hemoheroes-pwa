@@ -11,41 +11,43 @@
   <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <!-- Dropdown Structure -->
-  <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
-  </ul>
-  <nav>
-    <div class="nav-wrapper grey lighten-5">
-      <a href="#!" class="brand-logo"> <img src="./assets/images/hemoheroes-logo.png" alt="Logo HemoHeroes" class="responsive-img"></a>
+  <nav class="grey lighten-5">
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#">Quero ser um Doador</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Sou um HemoCentro</a></li>
+    </ul>
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo"><img src="./assets/images/hemoheroes-logo.png" alt="" class="responsive-img"> </a>    
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-button" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li ><a href="#">Como funciona</a></li>
+        <li ><a class="dropdown-button" data-target="dropdown1">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li ><a href="#">Quem pode doar</a></li>
+        <li ><a href="#">Sobre</a></li>
+        <li ><a href="#">Login</a></li>
+        
       </ul>
     </div>
   </nav>
-  
   <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
+    <div class="section">
       <div class="container">
-        <br><br>
-        <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
+        <h3 style="
+        color: #333333;
+        font-size: 1.7em;
+        overflow: visible;
+        font-weight: 600;
+        text-shadow: 0px 1px 25px white;
+        ">
+        Receba notificações de quando e onde doar sangue
+        Faça parte dos doadores voluntários do HemoHeroes
+        </h3>
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+          <button class="btn-large waves-effect waves-light red darken-1 pulse">Quero me cadastrar!</button>
         </div>
-        <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-        </div>
-        <br><br>
-        
       </div>
     </div>
-    <div class="parallax"><img src="./assets/images/hospital.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="./assets/images/hospital.jpg" alt="hospital"></div>
   </div>
   
   
@@ -54,30 +56,42 @@
       
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m4">
+        <div class="col s12 m3">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-            
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <h2 class="center brown-text"><i class="material-icons">account_circle</i></h2>
+            <h5 class="center">Você se cadastra no HemoHeroes</h5>
+            <p class="light">
+              <div class="row center button">
+                <a href="#" id="download-button" class="btn-large waves-effect waves-light red darken-1 ">Quero Doar <i class="material-icons pulse">favorite</i></a>
+              </div>
+            </p>
           </div>
         </div>
         
-        <div class="col s12 m4">
+        <div class="col s12 m3">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
+            <h2 class="center brown-text"><i class="material-icons">local_hospital</i></h2>
+            <h5 class="center">O Banco de Sangue solicita a doação do seu tipo sanguíneo</h5>
             
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            <!-- <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p> -->
           </div>
         </div>
         
-        <div class="col s12 m4">
+        <div class="col s12 m3">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
+            <h2 class="center brown-text"><i class="material-icons">notifications</i></h2>
+            <h5 class="center">Você recebe a solicitação</h5>
             
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            <!-- <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p> -->
+          </div>
+        </div>
+        
+        <div class="col s12 m3">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">tag_faces</i><i class="material-icons">favorite</i></h2>
+            <h5 class="center">Atenda a solicitação comparecendo ao Banco de Sangue</h5>
+            
+            <!-- <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p> -->
           </div>
         </div>
       </div>
@@ -90,7 +104,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+          <!-- <h5 class="header col s12" style="font-size: 2em; font-weight: 550;">Vamos ver abaixo os hospitais parceiros!</h5> -->
         </div>
       </div>
     </div>
@@ -103,8 +117,10 @@
       <div class="row">
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Contact Us</h4>
-          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+          <h4>Hospitais Parceiros</h4>
+          <p class="left-align light">
+            <div id="googleMap" style="width:100%; height:430px;"></div>
+          </p>
         </div>
       </div>
       
@@ -116,54 +132,48 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+          <!-- <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5> -->
         </div>
       </div>
     </div>
     <div class="parallax"><img src="./assets/images/donationhand.jpg" alt="Unsplashed background img 3"></div>
   </div>
   
-  <footer class="page-footer teal">
+  <footer class="page-footer red darken-4">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <h5 class="white-text">Biografia</h5>
+          <p class="grey-text text-lighten-4">Nosso objetivo é salvar cada vez mais vidas captando novos doadores, disponibilizar uma nova ferramenta para os bancos de sangue e criando mais conforto aos usuários através de facilidades e transparência.</p>
           
           
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text">Links úteis</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="#!">Como funciona</a></li>
+            <li><a class="white-text" href="#!">Onde Doar</a></li>
+            <li><a class="white-text" href="#!">Quero ser um Doador</a></li>
+            <li><a class="white-text" href="#!">Sou Hemocentro</a></li>
+            <li><a class="white-text" href="#!">Login</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-        Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        Made by <a class="brown-text text-lighten-3" href="#">HemoHeroes</a>
       </div>
     </div>
   </footer>
   
-  
-  <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="./assets/js/materialize.js"></script>
   <script src="./assets/js/init.js"></script>
+  <script src="./assets/js/map.js"></script>
+  <script src="./assets/js/notifications.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap" async defer></script>
   
 </body>
 </html>
