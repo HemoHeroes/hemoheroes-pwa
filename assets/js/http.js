@@ -47,11 +47,9 @@ const validData = () => {
 
 const login = (who) => {
     let url = urlBase + who + "/login";
-    console.log("URL ", url)
-    let data = {
-        email: document.getElementById("email"),
-        password: document.getElementById("password")
-    };
+    let data = {};
+    data['email'] = $('#email')[0].value;
+    data['password'] = $('#password')[0].value;
     let options = {
         body: JSON.stringify(data),
         method: 'POST',
@@ -59,23 +57,12 @@ const login = (who) => {
             'content-type': 'application/json'
         }
     };
-    post(url, options)
-    .then(data => {
-        window.localStorage.setItem("login", data)
-    })
-    .catch(err => console.log("err ", err))
+    if(data != null) {
+        post(url, options)
+        .then(data => {
+            console.log(data)
+            window.localStorage.setItem("login", JSON.stringify(data))
+        })
+        .catch(err => console.log("err ", err))
+    };
 };
-post("https://hemoheros-api.herokuapp.com/api/v1/donators/login", {
-    body: JSON.stringify({
-        email:"renanbastos.tec@gmail.com",
-        password: "123"
-    }),
-    method: 'POST',
-    headers: {
-        'content-type': 'application/json'
-    }
-})
-    .then(data => {
-        window.localStorage.setItem("login", data)
-    })
-    .catch(err => console.log("err ", err))

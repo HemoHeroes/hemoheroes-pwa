@@ -5,15 +5,24 @@ self.addEventListener('install', event => {
     	caches.open(VERSION).then(cache => {
     		return cache.addAll([
                 '/',
+                '/assets/css/materialize.min.css',
+                '/assets/css/materialize.css',
+                '/assets/css/style.css',
+                '/assets/js/materialize.min.js',
+                '/assets/js/materialize.js',
+                '/assets/js/pages.js',
+                '/assets/js/notifications.js',
+                '/assets/js/map.js',
+                '/assets/js/http.js',
+                '/assets/js/init.js',
                 '/index.html',
-                '/templates/map.html',
-                '/404.html',
-                '/css/style.css',
-                '/js/main.js',
-                '/bower_components/angular/angular.min.js',
-                '/bower_components/angular-route/angular-route.min.js',
-                '/bower_components/ngmap/build/scripts/ng-map.min.js',
-                'https://maps.google.com/maps/api/js?key=AIzaSyBw6r3WwodXcKsajsS9h9SSNvsHHdx13eI'
+                '/views/about.html',
+                '/views/canDonate.html',
+                '/views/home.html',
+                '/views/iHospital.html',
+                '/views/login.html',
+                '/views/wantDonate.html',
+                // 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap'
     		]).then(_ => {
     			console.log('INSTALLED ' + VERSION);
         		resolve();
@@ -52,13 +61,13 @@ self.addEventListener('fetch', event => {
         			})
         			return response.clone()
         		} else {
-        			// return caches.match(errorPage)
+        			return caches.match(errorPage)
         		}
         	})
         }).catch(
             x => {
                 console.log("X", x)
-                // return caches.match(errorPage)
+                return caches.match(errorPage)
             }
         )
     )

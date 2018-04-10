@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <meta name="theme-color" content="#c62828">
+
   <title>Hemo Heroes - Progressive Web App!!!</title>
   
+  <link rel="manifest" href="/manifest.json">
+
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -182,5 +188,24 @@
 <script src="./assets/js/init.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap"></script>
+
+<script>
+    if('serviceWorker' in navigator){
+        navigator
+        .serviceWorker
+        .register('/sw.js')
+        .then(
+            registry => {
+                console.log('Registry with success', registry.scope);
+            }
+        )
+        .catch(
+            err => {
+                console.log('Ops, error the registry service worker')
+            }
+        )
+    }
+</script>
+
 </body>
 </html>
