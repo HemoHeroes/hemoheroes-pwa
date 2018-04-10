@@ -179,7 +179,7 @@
 </footer>
 
 
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="./assets/js/jquery.js"></script>
 <script src="./assets/js/materialize.js"></script>
 <script src="./assets/js/map.js"></script>
 <script src="./assets/js/notifications.js"></script>
@@ -190,6 +190,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap"></script>
 
 <script>
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
     if('serviceWorker' in navigator){
         navigator
         .serviceWorker

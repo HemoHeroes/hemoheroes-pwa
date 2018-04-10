@@ -8,6 +8,7 @@ self.addEventListener('install', event => {
                 '/assets/css/materialize.min.css',
                 '/assets/css/materialize.css',
                 '/assets/css/style.css',
+                '/assets/js/jquery.js',
                 '/assets/js/materialize.min.js',
                 '/assets/js/materialize.js',
                 '/assets/js/pages.js',
@@ -15,6 +16,11 @@ self.addEventListener('install', event => {
                 '/assets/js/map.js',
                 '/assets/js/http.js',
                 '/assets/js/init.js',
+                '/assets/images/blood-donators.jpg',
+                '/assets/images/donationhand.jpg',
+                '/assets/images/hemoheroes-logo.png',
+                '/assets/images/hospital.jpg',
+                '/assets/images/Logo-email.png',
                 '/index.html',
                 '/views/about.html',
                 '/views/canDonate.html',
@@ -22,7 +28,8 @@ self.addEventListener('install', event => {
                 '/views/iHospital.html',
                 '/views/login.html',
                 '/views/wantDonate.html',
-                // 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap'
+                'https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
+                'https://fonts.googleapis.com/icon?family=Material+Icons'
     		]).then(_ => {
     			console.log('INSTALLED ' + VERSION);
         		resolve();
