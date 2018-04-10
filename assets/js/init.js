@@ -11,7 +11,6 @@
         gutter: 1,
         constrainWidth: false
       }
-    );
-    
+    );    
   }); // end of document ready
 })(jQuery); // end of jQuery name space

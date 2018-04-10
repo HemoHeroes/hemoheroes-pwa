@@ -10,12 +10,12 @@
     "display": "standalone",
     "icons": [
         {
-            "src": "iamges/bg.png",
+            "src": "assets/images/Logo-email.png",
             "sizes": "48x48",
             "type": "image/png"
         },
         {
-            "src": "iamges/bg.png",
+            "src": "assets/images/Logo-email.png",
             "sizes": "512x512",
             "type": "image/png"
         }

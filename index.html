@@ -1,46 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <meta name="theme-color" content="#c62828">
+
   <title>Hemo Heroes - Progressive Web App!!!</title>
   
+  <link rel="manifest" href="/manifest.json">
+
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+  
   <nav class="grey lighten-5">
     <ul id="dropdown1" class="dropdown-content">
-      <li><a href="#">Quero ser um Doador</a></li>
+      <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
       <li class="divider"></li>
-      <li><a href="#">Sou um HemoCentro</a></li>
+      <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
     </ul>
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo"><img src="./assets/images/hemoheroes-logo.png" alt="" class="responsive-img"> </a>    
+      <a onclick="changePage('home')" style="cursor: pointer;" class="brand-logo"><img src="./assets/images/hemoheroes-logo.png" alt="" class="responsive-img"> </a>    
       <ul class="right hide-on-med-and-down">
-        <li ><a href="#">Como funciona</a></li>
+        <li ><a href="#info">Como funciona</a></li>
         <li ><a class="dropdown-button" data-target="dropdown1">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li ><a href="#">Quem pode doar</a></li>
-        <li ><a href="#">Sobre</a></li>
-        <li ><a href="#">Login</a></li>
+        <li ><a onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
+        <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
+        <li ><a onclick="changePage('login')" href="#content">Login</a></li>
         
       </ul>
     </div>
   </nav>
-  <div id="index-banner" class="parallax-container">
-    <div class="section">
-      <div class="container">
-        <h3 style="
-        color: #333333;
-        font-size: 1.7em;
-        overflow: visible;
-        font-weight: 600;
-        text-shadow: 0px 1px 25px white;
-        ">
-        Receba notificações de quando e onde doar sangue
-        Faça parte dos doadores voluntários do HemoHeroes
+  
+  <div id="content" style="display: none;" class="section">
+    
+  </div>
+  
+  <div id="home" style="display: none;">
+    <div id="index-banner" class="parallax-container">
+      <div class="section">
+        <div class="container">
+          <h3 style="
+          color: #333333;
+          font-size: 1.7em;
+          overflow: visible;
+          font-weight: 600;
+          text-shadow: 0px 1px 25px white;
+          ">
+          Receba notificações de quando e onde doar sangue
+          Faça parte dos doadores voluntários do HemoHeroes
         </h3>
         <div class="row center">
           <button class="btn-large waves-effect waves-light red darken-1 pulse">Quero me cadastrar!</button>
@@ -52,7 +65,7 @@
   
   
   <div class="container">
-    <div class="section">
+    <div id="info" class="section">
       
       <!--   Icon Section   -->
       <div class="row">
@@ -127,7 +140,6 @@
     </div>
   </div>
   
-  
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -138,42 +150,62 @@
     </div>
     <div class="parallax"><img src="./assets/images/donationhand.jpg" alt="Unsplashed background img 3"></div>
   </div>
-  
-  <footer class="page-footer red darken-4">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Biografia</h5>
-          <p class="grey-text text-lighten-4">Nosso objetivo é salvar cada vez mais vidas captando novos doadores, disponibilizar uma nova ferramenta para os bancos de sangue e criando mais conforto aos usuários através de facilidades e transparência.</p>
-          
-          
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Links úteis</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Como funciona</a></li>
-            <li><a class="white-text" href="#!">Onde Doar</a></li>
-            <li><a class="white-text" href="#!">Quero ser um Doador</a></li>
-            <li><a class="white-text" href="#!">Sou Hemocentro</a></li>
-            <li><a class="white-text" href="#!">Login</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        Made by <a class="brown-text text-lighten-3" href="#">HemoHeroes</a>
-      </div>
-    </div>
-  </footer>
-  
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="./assets/js/materialize.js"></script>
-  <script src="./assets/js/init.js"></script>
-  <script src="./assets/js/map.js"></script>
-  <script src="./assets/js/notifications.js"></script>
+</div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap" async defer></script>
-  
+<footer class="page-footer red darken-4">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Missão</h5>
+        <p class="grey-text text-lighten-4">Nosso objetivo é salvar cada vez mais vidas captando novos doadores, disponibilizar uma nova ferramenta para os bancos de sangue e criando mais conforto aos usuários através de facilidades e transparência.</p>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Como funciona</a></li>
+          <li><a class="white-text" href="#!">Onde Doar</a></li>
+          <li><a class="white-text" href="#!">Quero ser um Doador</a></li>
+          <li><a class="white-text" href="#!">Sou Hemocentro</a></li>
+          <li><a class="white-text" href="#!">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="#">HemoHeroes</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="./assets/js/materialize.js"></script>
+<script src="./assets/js/map.js"></script>
+<script src="./assets/js/notifications.js"></script>
+<script src="./assets/js/pages.js"></script>
+<script src="./assets/js/http.js"></script>
+<script src="./assets/js/init.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap"></script>
+
+<script>
+    if('serviceWorker' in navigator){
+        navigator
+        .serviceWorker
+        .register('/sw.js')
+        .then(
+            registry => {
+                console.log('Registry with success', registry.scope);
+            }
+        )
+        .catch(
+            err => {
+                console.log('Ops, error the registry service worker')
+            }
+        )
+    }
+</script>
+
 </body>
 </html>
