@@ -27,6 +27,7 @@ function myMap() {
                 });
             })
             .catch(error => {
+                document.getElementById("googleMap").innerHTML = "Desculpe, houve algum erro para carregar o mapa, tente daqui alguns instantes."
                 console.log(error)
             })
         });

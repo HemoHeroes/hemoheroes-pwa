@@ -45,6 +45,48 @@ const validData = () => {
     }
 };
 
+const registerDonator = () => {
+    let data = {
+        name : $('#name')[0].value,
+        password : $('#password')[0].value,
+        email : $('#email')[0].value,
+        dateOfBirth: $('#dateOfBirth')[0].value,
+        bloodType : $('#bloodType')[0].value,
+        genre : $('#genre')[0].value
+    };
+    if(
+        data.name != "" && 
+        data.password != "" && 
+        data.email != "" && 
+        data.dateOfBirth != "" && 
+        data.bloodType != "" && 
+        data.genre != ""
+    ){
+        //Chama Post
+    }
+};
+
+const registerBank = () => {
+    let data = {
+        name : $('#name')[0].value,
+        password : $('#password')[0].value,
+        email : $('#email')[0].value,
+        cnpj: $('#dateOfBirth')[0].value,
+        phones : $('#bloodType')[0].value,
+        address : $('#genre')[0].value
+    };
+    if(
+        data.name != "" && 
+        data.password != "" && 
+        data.email != "" && 
+        data.cnpj != "" && 
+        data.phones != "" && 
+        data.address != ""
+    ){
+        //Chama Post
+    }
+};
+
 const login = (who) => {
     let url = urlBase + who + "/login";
     let data = {};
