@@ -2,7 +2,7 @@ function myMap() {
     if(navigator.onLine == true){
         navigator.geolocation.getCurrentPosition(function(position) {
             let mapProp = {
-                center:new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                 zoom: 8,
             };
             
@@ -27,12 +27,16 @@ function myMap() {
                 });
             })
             .catch(error => {
+                console.log("ASDAS :: ", error)
                 document.getElementById("googleMap").innerHTML = "Desculpe, houve algum erro para carregar o mapa, tente daqui alguns instantes."
                 console.log(error)
             })
         });
 
     }else{
+        console.log("off")
         document.getElementById("googleMap").innerHTML = "Desculpe, mas sua conexão estão lenta ou indisponível."
     }
 }
+
+myMap();

@@ -2,9 +2,10 @@ const VERSION = 'hemoheroes@v2-'+new Date().getMilliseconds();
 
 self.addEventListener('install', event => {
     event.waitUntil(new Promise((resolve, reject) => {
-    	caches.open(VERSION).then(cache => {
-    		return cache.addAll([
+        caches.open(VERSION).then(cache => {
+            return cache.addAll([
                 './',
+                './assets/css/material.woff2',
                 './assets/css/materialize.min.css',
                 './assets/css/materialize.css',
                 './assets/css/style.css',
@@ -28,16 +29,14 @@ self.addEventListener('install', event => {
                 './views/home.html',
                 './views/iHospital.html',
                 './views/login.html',
-                './views/wantDonate.html',
-                'https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
-                'https://fonts.googleapis.com/icon?family=Material+Icons'
-    		]).then(_ => {
-    			console.log('INSTALLED ' + VERSION);
-        		resolve();
-    		}).catch(err => {
-    			console.log('Não deu!', err);
-    		})
-    	})
+                './views/wantDonate.html'
+            ]).then(_ => {
+                console.log('INSTALLED ' + VERSION);
+                resolve();
+            }).catch(err => {
+                console.log('Não deu!', err);
+            })
+        })
     }))
 })
 
@@ -59,31 +58,31 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url)
     const errorPage = './404.html'
-    console.log('Requisitou: ', event.request.url)
-    return event.respondWith(
-        caches.match(event.request).then(response => {
-        	return response || fetch(event.request).then(response => {
-        		if (response.ok) {
-        			caches.open(VERSION).then(cache => {
-        				cache.put(event.request, response)
-        			})
-        			return response.clone()
-        		} else {
-        			return caches.match(errorPage)
-        		}
-        	})
-        }).catch(
-            x => {
-                console.log("X", x)
-                return caches.match(errorPage)
+    let opt = {};
+    let maps = event.request.url.indexOf("maps.googleapis");
+    if (maps < 0) {
+        return event.respondWith(
+            caches.match(event.request).then(response => {
+                return response || fetch(event.request).then(response => {
+                    if (response.ok) {
+                        caches.open(VERSION).then(cache => {
+                            cache.put(event.request, response)
+                        })
+                        return response.clone()
+                    } else {
+                        return caches.match(errorPage)
+                    }
+                })
+            })
+        );
+    } else {
+        return fetch(event.request).then(response => {
+            if (response.ok) {
+                caches.open(VERSION).then(cache => {
+                    cache.put(event.request, response)
+                })
+                return response.clone()
             }
-        )
-    )
+        })
+    }
 });
-
-
-
-
-
-
-

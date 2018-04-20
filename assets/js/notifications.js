@@ -6,19 +6,27 @@
             body: 'Você irá receber as noticações desse jeito!', 
             icon:'./assets/images/Logo-email.png'
         };
-        var title = "HemoHeroes notifica";
-        if(!('Notification' in window)){
-            alert("nao suporta notificação");
-        }
-        else if(Notification.permission === 'granted'){
-            var notif = new Notification(title, op);
-        }
-        else if(Notification.permission !== 'denied'){
-            Notification.requestPermission(function(permission){
-                if(permission === 'granted'){
-                    var notif = new Notification(title, op);
+        var title = "HemoHeroes Notifica";
+        var offline = {
+            body: "Olá, você está offline. assim que tiver online acesse novamente!",
+            icon:'./assets/images/Logo-email.png'
+        };
+        if('Notification' in window){
+            
+            if(Notification.permission === 'granted'){
+                if(!navigator.onLine) {
+                    new Notification(title, offline);
                 }
-            });
+                
+            }
+            if(Notification.permission === 'denied' || Notification.permission === 'default'){
+                Notification.requestPermission(function(permission){
+                    if(permission === 'granted'){
+                        new Notification(title, op);
+                    }
+                });
+            }
+
         }
     };
     

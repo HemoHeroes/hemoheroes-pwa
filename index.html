@@ -38,26 +38,26 @@
   </nav>
   
   <ul id="dropdown2" class="dropdown-content">
-      <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
-      <li class="divider"></li>
-      <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
-    </ul>
+    <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
+    <li class="divider"></li>
+    <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
+  </ul>
   <ul id="slide-out" class="sidenav">
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
-            <div class="collapsible-body">
-              <ul>
-                  <li><a class="sidenav-close" onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
-                  <li><a class="sidenav-close" onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
+          <div class="collapsible-body">
+            <ul>
+              <li><a class="sidenav-close" onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
+              <li><a class="sidenav-close" onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
   <ul class="sidenav" id="mobile-menu">
     <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
     <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
@@ -218,7 +218,7 @@
 <script src="./assets/js/http.js"></script>
 <script src="./assets/js/init.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc&callback=myMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc"></script>
 
 <script>
   if('serviceWorker' in navigator){
@@ -226,14 +226,14 @@
     .serviceWorker
     .register('/sw.js')
     .then(
-    registry => {
-      console.log('Registry with success', registry.scope);
-    }
+      registry => {
+        console.log('Registry with success', registry.scope);
+      }
     )
     .catch(
-    err => {
-      console.log('Ops, error the registry service worker')
-    }
+      err => {
+        console.log('Ops, error the registry service worker')
+      }
     )
   }
 </script>
