@@ -12,5 +12,11 @@
         constrainWidth: false
       }
     );    
+    $(".dropdown-trigger").dropdown({
+      coverTrigger: false,
+      closeOnClick: true 
+    });
+    $('select').formSelect();
+
   }); // end of document ready
 })(jQuery); // end of jQuery name space
