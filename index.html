@@ -27,7 +27,7 @@
     <div class="nav-wrapper container">
       <a onclick="changePage('home')" style="cursor: pointer;" class="brand-logo"><img src="./assets/images/hemoheroes-logo.png" alt="" class="responsive-img"> </a>    
       <ul class="right hide-on-med-and-down">
-        <li ><a href="#info">Como funciona</a></li>
+        <li ><a href="#info" onclick="changePage('home')">Como funciona</a></li>
         <li ><a class="dropdown-button" data-target="dropdown1">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li>
         <li ><a onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
         <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
@@ -87,7 +87,7 @@
           Faça parte dos doadores voluntários do HemoHeroes
         </h3>
         <div class="row center">
-          <button class="btn-large waves-effect waves-light red darken-1 pulse">Quero me cadastrar!</button>
+          <button onclick="changePage('wantDonate')" class="btn-large waves-effect waves-light red darken-1 pulse">Quero me cadastrar!</button>
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@
             <h5 class="center">Você se cadastra no HemoHeroes</h5>
             <p class="light">
               <div class="row center button">
-                <a href="#" id="download-button" class="btn-large waves-effect waves-light red darken-1 ">Quero Doar <i class="material-icons pulse">favorite</i></a>
+                <a href="#" onclick="changePage('wantDonate')" id="download-button" class="btn-large waves-effect waves-light red darken-1 ">Quero Doar <i class="material-icons pulse">favorite</i></a>
               </div>
             </p>
           </div>
@@ -193,11 +193,9 @@
       <div class="col l3 s12">
         <h5 class="white-text">Links</h5>
         <ul>
-          <li><a class="white-text" href="#!">Como funciona</a></li>
-          <li><a class="white-text" href="#!">Onde Doar</a></li>
-          <li><a class="white-text" href="#!">Quero ser um Doador</a></li>
-          <li><a class="white-text" href="#!">Sou Hemocentro</a></li>
-          <li><a class="white-text" href="#!">Login</a></li>
+          <li><a class="white-text" href="#!" onclick="changePage('wantDonate')">Quero ser um Doador</a></li>
+          <li><a class="white-text" href="#!" onclick="changePage('iHospital')">Sou Hemocentro</a></li>
+          <li><a class="white-text" href="#!" onclick="changePage('login')">Login</a></li>
         </ul>
       </div>
     </div>
@@ -218,7 +216,7 @@
 <script src="./assets/js/http.js"></script>
 <script src="./assets/js/init.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc" async defer></script>
 
 <script>
   if('serviceWorker' in navigator){
