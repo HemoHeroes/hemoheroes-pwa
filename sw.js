@@ -32,6 +32,7 @@ self.addEventListener('install', event => {
                 './views/wantDonate.html'
             ]).then(_ => {
                 console.log('INSTALLED ' + VERSION);
+                self.skipWaiting();
                 resolve();
             }).catch(err => {
                 console.log('Não deu!', err);
@@ -55,34 +56,16 @@ self.addEventListener('activate', event => {
     }))
 })
 
-self.addEventListener('fetch', event => {
-    const url = new URL(event.request.url)
-    const errorPage = './404.html'
-    let opt = {};
-    let maps = event.request.url.indexOf("maps.googleapis");
-    if (maps < 0) {
-        return event.respondWith(
-            caches.match(event.request).then(response => {
-                return response || fetch(event.request).then(response => {
-                    if (response.ok) {
-                        caches.open(VERSION).then(cache => {
-                            cache.put(event.request, response)
-                        })
-                        return response.clone()
-                    } else {
-                        return caches.match(errorPage)
-                    }
-                })
-            })
-        );
-    } else {
-        return fetch(event.request).then(response => {
-            if (response.ok) {
-                caches.open(VERSION).then(cache => {
-                    cache.put(event.request, response)
-                })
-                return response.clone()
-            }
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            return response || fetch(event.request).catch(
+                () => {
+                    return caches.match('./404.html');
+                }
+            );
+        }).catch(function() {
+            return caches.match('./404.html');
         })
-    }
+    );
 });
