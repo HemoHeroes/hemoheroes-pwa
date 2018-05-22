@@ -1,6 +1,6 @@
 "use strict";
 
-const urlBase = "./api/v1/";
+const urlBase = "http://localhost:8080/api/v1/";
 
 let post = (url, param) => fetch(url, param).then(response => response.json());
 
