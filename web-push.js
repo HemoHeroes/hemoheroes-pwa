@@ -4,7 +4,7 @@ const publicVapidKey =
 // Check for service worker
 if ("serviceWorker" in navigator) {
   console.log("entrou auqi???")
-  send().catch(err => console.error(err));
+  send().catch(err => console.log(err));
 }
 
 // Register SW, Register Push, Send Push
@@ -24,15 +24,18 @@ async function send() {
   });
   console.log("Push Registered...");
 
+  let user = window.localStorage.getItem("login") == null ? null : JSON.parse(window.localStorage.getItem("login")).email;
   // Send Push Notification
   console.log("Sending Push...");
-  await fetch("http://localhost:8080/api/v1/banks/subscriber", {
+  let fetchs = await fetch("http://localhost:8080/notifications", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {
-      "content-type": "application/json"
+      "content-type": "application/json",
+      "User": user
     }
   });
+  console.log('fetchs => ', await fetchs.json())
   console.log("Push Sent...");
 }
 
@@ -42,7 +45,7 @@ function urlBase64ToUint8Array(base64String) {
     .replace(/\-/g, "+")
     .replace(/_/g, "/");
 
-  const rawData = window.atob(base64);
+  const rawData = window.atob(base64);  
   const outputArray = new Uint8Array(rawData.length);
 
   for (let i = 0; i < rawData.length; ++i) {
