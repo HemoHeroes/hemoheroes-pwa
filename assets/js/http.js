@@ -1,6 +1,6 @@
 "use strict";
 
-const urlBase = "./";
+const urlBase = "./api/v1/";
 
 let post = (url, param) => fetch(url, param).then(response => response.json());
 
