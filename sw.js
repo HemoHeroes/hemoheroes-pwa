@@ -1,4 +1,4 @@
-const VERSION = 'hemoheroes@v2-'+new Date().getMilliseconds();
+const VERSION = 'hemoheroes@v2-alpha' + new Date().getMilliseconds();
 
 self.addEventListener('install', event => {
     event.waitUntil(new Promise((resolve, reject) => {
@@ -29,6 +29,7 @@ self.addEventListener('install', event => {
                 './views/home.html',
                 './views/iHospital.html',
                 './views/login.html',
+                './views/requireDonate.html',
                 './views/wantDonate.html'
             ]).then(_ => {
                 console.log('INSTALLED ' + VERSION);
@@ -59,7 +60,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', function(event) {
     event.respondWith(
         caches.match(event.request).then(function(response) {
-            return response || fetch(event.request).catch(
+            return response || fetch(event.request)
+            .catch(
                 () => {
                     return caches.match('./404.html');
                 }

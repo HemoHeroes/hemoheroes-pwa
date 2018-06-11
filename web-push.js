@@ -27,7 +27,7 @@ async function send() {
   let user = window.localStorage.getItem("login") == null ? null : JSON.parse(window.localStorage.getItem("login")).email;
   // Send Push Notification
   console.log("Sending Push...");
-  let fetchs = await fetch("http://localhost:8080/notifications", {
+  let fetchs = await fetch("./notifications", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {
