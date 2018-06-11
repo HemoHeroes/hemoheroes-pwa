@@ -185,7 +185,7 @@
   </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" id="chatBot">
   <div class="section">
     <div class="row">
       <div class="col s12 center">
@@ -227,10 +227,18 @@
 <script>
   function whatMenu () {
     var hasLogin = JSON.parse(window.localStorage.getItem("login")) || {};
+    var whatPage = window.localStorage.getItem("currentPage");
     if (hasLogin.token) {
       //hasDonate hasPerfil isHospital2 hasLougout hasLogin
       document.getElementById("menuLogin").style="display: none";
       document.getElementById("menuLogout").style="";
+      
+      if (whatPage == "home" || whatPage == "about") {
+        document.getElementById("chatBot").style="";
+      } else {
+        document.getElementById("chatBot").style="display: none";
+      }
+      
       
       if (hasLogin.checked == "banks"){
         document.getElementById("isHospital").style="";
