@@ -17,55 +17,135 @@ const localStorate = {
 };
 
 const currentPage = localStorate.get("currentPage");
-
+console.log("carregou :: ", currentPage)
 if(currentPage) changePage(currentPage);
 else changePage("home");
 
 function changePage(page){
     localStorate.set("currentPage", page);
+    whatMenu();
     switch(page){
         case "home":
-            view.style.display = "none";
-            home.style.display = "";
+        view.style.display = "none";
+        home.style.display = "";
         break;
         case "canDonate":
-            add_content(page)
-            .then(()=>{
-                view.style.display = "";
-                home.style.display = "none";
-            });
+        add_content(page)
+        .then(()=>{
+            view.style.display = "";
+            home.style.display = "none";
+        });
         break;
         case "about":
-            add_content(page)
-            .then(()=>{
-                view.style.display = "";
-                home.style.display = "none";
-            });
+        add_content(page)
+        .then(()=>{
+            view.style.display = "";
+            home.style.display = "none";
+        });
         break;
         case "login":
-            add_content(page)
-            .then(()=>{
-                view.style.display = "";
-                home.style.display = "none";
-            });
+        add_content(page)
+        .then(()=>{
+            view.style.display = "";
+            home.style.display = "none";
+        });
         break;
         case "wantDonate":
-            add_content(page)
-            .then(()=>{
-                view.style.display = "";
-                home.style.display = "none";
-            });
+        add_content(page)
+        .then(()=>{
+            view.style.display = "";
+            home.style.display = "none";
+        });
         break;
         case "iHospital":
-            add_content(page)
-            .then(()=>{
-                view.style.display = "";
-                home.style.display = "none";
-            });
+        add_content(page)
+        .then(()=>{
+            view.style.display = "";
+            home.style.display = "none";
+        });
+        break;
+        case "myPerfil":
+        let storage = JSON.parse(localStorate.get("login"));
+        if (storage.checked == "donators") {
+            let data = `
+            <div id="perfil" class="container row">
+            <form class="col s12">
+            <div class="row">
+            <div class="input-field col s12">
+            <input id="name" type="text" class="validate">
+            <label for="name">${storage.name}</label>
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col s6">
+            <input id="password1" type="password" class="validate">
+            <label for="password1">Informe uma nova senha</label>
+            </div>
+            <div class="input-field col s6">
+            <input id="password2" type="password" class="validate">
+            <label for="password2">Confirme sua nova senha</label>
+            </div>
+            </div>
+            <div class="center">
+            <a class="btn red darken-5" onclick="saveDataDonator()"> Salvar <i class="material-icons right">send</i> </a>
+            </div>
+            </form>
+            </div>
+            `;
+            view.innerHTML = data;
+            view.style.display = "";
+            home.style.display = "none";
+        } else if (storage.checked == "banks") {
+            let data = `
+            <div id="perfil" class="container row">
+            <form class="col s12">
+            <div class="row">
+            <div class="input-field col s12">
+            <input id="name" type="text" class="validate">
+            <label for="name">${storage.name}</label>
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col s6">
+            <input id="phone1" type="text" class="validate">
+            <label for="phone1">${storage.phones.length > 0 ? storage.phones[0] : ""}</label>
+            </div>
+            <div class="input-field col s6">
+            <input id="phone2" type="text" class="validate">
+            <label for="phone2">${storage.phones.length > 1 ? storage.phones[1] : ""}</label>
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col s6">
+            <input id="password1" type="password" class="validate">
+            <label for="password1">Informe uma senha</label>
+            </div>
+            <div class="input-field col s6">
+            <input id="password2" type="password" class="validate">
+            <label for="password2">Confirme sua senha</label>
+            </div>
+            </div>
+            <div class="center">
+            <button class="btn red darken-5" onclick="saveDataBank()"> Salvar <i class="material-icons right">send</i> </button>
+            </div>
+            </form>
+            </div>
+            `;
+            view.innerHTML = data;
+            view.style.display = "";
+            home.style.display = "none";
+        }
+        break;
+        case "requireDonate":
+        add_content(page)
+        .then(()=>{
+            view.style.display = "";
+            home.style.display = "none";
+        });
         break;
         default:
-            view.style.display = "none";
-            home.style.display = "";
+        view.style.display = "none";
+        home.style.display = "";
         break;
     };
 };

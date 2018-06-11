@@ -15,7 +15,7 @@
   <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body>
+<body onload="whatMenu()">
   
   <nav class="navbar-wrapper grey lighten-5">
     <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -24,7 +24,17 @@
       <li class="divider"></li>
       <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
     </ul>
-    <div class="nav-wrapper container">
+    <div class="nav-wrapper container" id="menuLogout">
+      <a onclick="changePage('home')" style="cursor: pointer;" class="brand-logo"><img src="./assets/images/hemoheroes-logo.png" alt="" class="responsive-img"> </a>    
+      <ul class="right hide-on-med-and-down">
+        <li ><a href="#info" onclick="changePage('home')">Como funciona</a></li>
+        <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
+        <li ><a onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
+        <li ><a onclick="changePage('requireDonate')" href="#content" id="isHospital">Solicitar doação</a></li>
+        <li ><a onclick="logout()" href="#content">Logout</a></li>
+      </ul>
+    </div>
+    <div class="nav-wrapper container" id="menuLogin">
       <a onclick="changePage('home')" style="cursor: pointer;" class="brand-logo"><img src="./assets/images/hemoheroes-logo.png" alt="" class="responsive-img"> </a>    
       <ul class="right hide-on-med-and-down">
         <li ><a href="#info" onclick="changePage('home')">Como funciona</a></li>
@@ -32,7 +42,6 @@
         <li ><a onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
         <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a onclick="changePage('login')" href="#content">Login</a></li>
-        
       </ul>
     </div>
   </nav>
@@ -42,6 +51,7 @@
     <li class="divider"></li>
     <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
   </ul>
+  
   <ul id="slide-out" class="sidenav">
     <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
@@ -58,15 +68,7 @@
     </li>
   </ul>
   
-  <ul class="sidenav" id="mobile-menu">
-    <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
-    <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
-    <li ><a class="dropdown-trigger" data-target="dropdown2">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
-    <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
-    <li ><a class="sidenav-close" onclick="changePage('login')" href="#content">Login</a></li>
-    
-  </ul>
+  <ul class="sidenav" id="mobile-menu"></ul>
   
   <div id="content" style="display: none;" class="section">
     
@@ -207,6 +209,55 @@
   </div>
 </footer>
 
+<script>
+  function whatMenu () {
+    var hasLogin = JSON.parse(window.localStorage.getItem("login")) || {};
+    if (hasLogin.token) {
+      //hasDonate hasPerfil isHospital2 hasLougout hasLogin
+      document.getElementById("menuLogin").style="display: none";
+      document.getElementById("menuLogout").style="";
+      
+      if (hasLogin.checked == "banks"){
+        document.getElementById("isHospital").style="";
+        document.getElementById("mobile-menu").innerHTML = `
+        <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
+        <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('requireDonate')" href="#content" >Solicitar doação</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        `;
+      } else {
+        document.getElementById("isHospital").style="display: none";
+        document.getElementById("mobile-menu").innerHTML = `
+        <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
+        <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        `;
+      }
+    } else {
+      document.getElementById("menuLogout").style="display: none";
+      document.getElementById("menuLogin").style="";
+      document.getElementById("mobile-menu").innerHTML = 
+      `
+      <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
+      <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
+      <li ><a class="dropdown-trigger" data-target="dropdown2">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li> 
+      <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('login')" href="#content">Login</a></li>
+      `;
+    }
+  };
+  function logout () {
+    changePage("home");
+    window.localStorage.removeItem("login", null);
+    window.location = "/"
+  };
+  
+</script>
 
 <script src="./assets/js/jquery.js"></script>
 <script src="./assets/js/materialize.js"></script>
@@ -221,19 +272,20 @@
 
 <script src="./web-push.js"></script>
 <script>
+  
   if('serviceWorker' in navigator){
     navigator
     .serviceWorker
     .register('/sw.js')
     .then(
-      registry => {
-        console.log('Registry with success', registry.scope);
-      }
+    registry => {
+      console.log('Registry with success', registry.scope);
+    }
     )
     .catch(
-      err => {
-        console.log('Ops, error the registry service worker')
-      }
+    err => {
+      console.log('Ops, error the registry service worker')
+    }
     )
   }
 </script>

@@ -4,6 +4,7 @@
     
     $('.sidenav').sidenav();
     $('.parallax').parallax();
+    
     $(".dropdown-button").dropdown(
       {
         hover: true,
@@ -12,10 +13,12 @@
         constrainWidth: false
       }
     );    
+
     $(".dropdown-trigger").dropdown({
       coverTrigger: false,
       closeOnClick: true 
     });
+
     $('select').formSelect();
 
   }); // end of document ready
