@@ -8,7 +8,7 @@ function myMap() {
             
             var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
             
-            fetch("./v1/banks")
+            fetch("./api/v1/banks")
             .then(res=>res.json())
             .then(data => {
                 data.forEach((element, index) => {
