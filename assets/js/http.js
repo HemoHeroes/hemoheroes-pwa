@@ -1,6 +1,6 @@
 "use strict";
 
-const urlBase = "./";
+const urlBase = "./api/v1/";
 
 let post = (url, param) => fetch(url, param).then(response => response.json());
 
@@ -10,8 +10,10 @@ const registerDonator = () => {
         password : $('#password1')[0].value,
         password2 : $('#password2')[0].value,
         email : $('#email')[0].value,
-        // dateOfBirth: $('#dateOfBirth')[0].value,
+        dateOfBirth: $('#dateOfBirth')[0].value,
+        lastDonate: $('#lastDonate')[0].value,
         bloodType : $('#bloodType')[0].value,
+        push: $('#push')[0].checked,
         genre : $('input[name=genre]:checked')[0].id || null
     };
     if(
@@ -19,7 +21,6 @@ const registerDonator = () => {
         data.password != "" && 
         data.password2 != "" &&
         data.email != "" && 
-        // data.dateOfBirth != "" && 
         data.bloodType != "" && 
         data.genre != ""
     ){
@@ -37,7 +38,8 @@ const registerDonator = () => {
             $('#password1')[0].value = "";
             $('#password2')[0].value = "";
             $('#email')[0].value = "";
-            // $('#dateOfBirth')[0].value = "";
+            $('#dateOfBirth')[0].value = "";
+            $('#lastDonate')[0].value = "";
             $('#bloodType')[0].value = "";
             
             showToast("Foi registrado com sucesso!", 1000);
@@ -52,7 +54,6 @@ const registerDonator = () => {
 };
 
 const registerBank = () => {
-    //name, email, cnpj, phone1, phone2, street,password1, password1
     let data = {
         name : $('#name')[0].value,
         password : $('#password1')[0].value,
@@ -148,6 +149,9 @@ const saveDataDonator = () => {
     let storage = JSON.parse(window.localStorage.getItem("login"));
     let fields = {
         name : $('#name')[0].value || "",
+        dateOfBirth: $('#dateOfBirth')[0].value,
+        lastDonate: $('#lastDonate')[0].value,
+        push: document.getElementById("push").checked,
         password : $('#password1')[0].value || "",
         password2 : $('#password2')[0].value || ""
     }
@@ -157,6 +161,9 @@ const saveDataDonator = () => {
             data: {}
         };
         if (fields.name !== "") data.data.name = fields.name; 
+        if (fields.dateOfBirth !== "") data.data.dateOfBirth = fields.dateOfBirth; 
+        if (fields.lastDonate !== "") data.data.lastDonate = fields.lastDonate; 
+        if (fields.push == true || fields.push == false) data.data.push = fields.push;
         if (fields.password !== "" && fields.password2 !== ""){
             if (fields.password == fields.password2) {
                 data.data.password = fields.password; 

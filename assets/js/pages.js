@@ -17,7 +17,7 @@ const localStorate = {
 };
 
 const currentPage = localStorate.get("currentPage");
-console.log("carregou :: ", currentPage)
+
 if(currentPage) changePage(currentPage);
 else changePage("home");
 
@@ -74,6 +74,36 @@ function changePage(page){
             <div class="input-field col s12">
             <input id="name" type="text" class="validate">
             <label for="name">${storage.name}</label>
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col s12">
+            <p>
+            <label for="">
+            <span>Data de Nascimento</span>
+            <input id="dateOfBirth" type="date" class="datepicker" value="${storage.dateOfBirth}">
+            </label>
+            </p>
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col s12">
+            <p>
+            <label for="">
+            <span>Última doação</span>
+            <input id="lastDonate" type="date" class="datepicker" value="${storage.lastDonate}">
+            </label>
+            </p>
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col s12">
+            <p>
+            <label>
+            <input type="checkbox" id="push" ${storage.push == true ? "checked='checked'" : ""} />
+            <span>Desejo receber notificações</span>
+            </label>
+            </p>
             </div>
             </div>
             <div class="row">
