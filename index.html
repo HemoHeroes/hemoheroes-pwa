@@ -31,6 +31,7 @@
         <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
         <li ><a onclick="changePage('requireDonate')" href="#content" id="isHospital">Solicitar doação</a></li>
+        <li ><a onclick="changePage('solicitacao')" href="#content" id="isUser">Solicitações</a></li>
         <li ><a onclick="logout()" href="#content">Logout</a></li>
       </ul>
     </div>
@@ -229,7 +230,6 @@
     var hasLogin = JSON.parse(window.localStorage.getItem("login")) || {};
     var whatPage = window.localStorage.getItem("currentPage");
     if (hasLogin.token) {
-      //hasDonate hasPerfil isHospital2 hasLougout hasLogin
       document.getElementById("menuLogin").style="display: none";
       document.getElementById("menuLogout").style="";
       
@@ -242,21 +242,24 @@
       
       if (hasLogin.checked == "banks"){
         document.getElementById("isHospital").style="";
+        document.getElementById("isUser").style="display: none";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('requireDonate')" href="#content" >Solicitar doação</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('about')" href="#">Sobre</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#">Meu Perfil</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('requireDonate')" href="#" >Solicitar doação</a></li>
+        <li ><a class="sidenav-close" onclick="logout()" href="#">Logout</a></li>
         `;
       } else {
         document.getElementById("isHospital").style="display: none";
+        document.getElementById("isUser").style="";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('about')" href="#">Sobre</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#">Meu Perfil</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('solicitacao')" href="#" id="isUser">Solicitações</a></li>
         <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
         `;
       }
@@ -268,9 +271,9 @@
       <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
       <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
       <li ><a class="dropdown-trigger" data-target="dropdown2">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li> 
-      <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
-      <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
-      <li ><a class="sidenav-close" onclick="changePage('login')" href="#content">Login</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#">Quem pode doar</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('about')" href="#">Sobre</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('login')" href="#">Login</a></li>
       `;
     }
   };
