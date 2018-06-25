@@ -255,42 +255,59 @@ const saveDataBank = () => {
 const requireBlood = (title, message) => {
     var typesBlood = $('[type=number]');
 
-    for(var i=0; i<$('[type=number]').length; i++){
-        console.log(typesBlood[i].id, typesBlood[i].value);
-    }
-
-    let data = {
+    let myPush = {
         "push": {
             "title": title || "Solicitamos sua colaboração.", 
             "body": message || "Nossos hemocentros estão precisando de doadores, nos ajude."
         },
+        "hospital": {},
         "bloods": []
     };
 
     for(var i=0; i<$('[type=number]').length; i++){
         if (typesBlood[i].value) {
-            data.bloods.push(typesBlood[i].id);
+            myPush.bloods.push(
+                /\-/gi.test(typesBlood[i].id) == true ? 
+                typesBlood[i].id.toLocaleUpperCase() : 
+                (typesBlood[i].id + "+").toLocaleUpperCase()
+            );
         }
     }
 
-    let options = {
-        body: JSON.stringify(data),
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        }
-    };
-    fetch(urlBase + "banks/notifications", options)
-    .then(response => {
-        if(response.status == 201) {
-            showToast("Foi solicitado com sucesso!", 1000);
-        }
-    })
-    .catch(error => {
-        console.log("error push => ", error)
-        showToast("Ocorreu algum erro, tente novamente mais tarde!", 1000);
-    });
-};
+    let email = window.localStorage.getItem('login');
+    email = JSON.parse(email).email;
 
-// requireBlood("testando 1", "my browser 1 push")
-// requireBlood();
+    fetch("./api/v1/banks/" + email).then(res=>res.json()).then(data => {
+
+        let hospital = {
+            address : data[0].address[0],
+            phone : data[0].phones[0],
+            name : data[0].name
+        };
+        
+        myPush.push.title = `O hemocentro ${hospital.name} solicita sua ajuda`;
+        myPush.push.body = `Endereço: ${hospital.address}\nTelefone: ${hospital.phone}`;
+        myPush.hospital = hospital;
+
+        let options = {
+            body: JSON.stringify(myPush),
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            }
+        };
+        fetch(urlBase + "banks/notifications", options)
+        .then(response => {
+            if(response.status == 201) {
+                showToast("Foi solicitado com sucesso!", 1000);
+            }
+        })
+        .catch(error => {
+            console.log("error push => ", error)
+            showToast("Ocorreu algum erro, tente novamente mais tarde!", 1000);
+        });
+
+    }).catch(console.log)
+
+    
+};

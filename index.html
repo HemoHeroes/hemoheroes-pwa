@@ -11,26 +11,24 @@
   
   <link rel="manifest" href="./manifest.json">
   
-  <!-- CSS  -->
-  <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body onload="whatMenu()">
   
   <nav class="navbar-wrapper grey lighten-5">
     <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul id="dropdown1" class="dropdown-content">
-      <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
+      <li><a onclick="changePage('wantDonate')" href="#">Quero ser um Doador</a></li>
       <li class="divider"></li>
-      <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
+      <li><a onclick="changePage('iHospital')" href="#">Sou um HemoCentro</a></li>
     </ul>
     <div class="nav-wrapper container" id="menuLogout">
       <a onclick="changePage('home')" style="cursor: pointer;" class="brand-logo"><img src="./assets/images/hemoheroes-logo.png" alt="" class="responsive-img"> </a>    
       <ul class="right hide-on-med-and-down">
         <li ><a href="#info" onclick="changePage('home')">Como funciona</a></li>
-        <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
-        <li ><a onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
-        <li ><a onclick="changePage('requireDonate')" href="#content" id="isHospital">Solicitar doação</a></li>
+        <li ><a onclick="changePage('about')" href="#">Sobre</a></li>
+        <li ><a onclick="changePage('myPerfil')" href="#">Meu Perfil</a></li>
+        <li ><a onclick="changePage('requireDonate')" href="#" id="isHospital">Solicitar doação</a></li>
+        <li ><a onclick="changePage('solicitacao')" href="#" id="isUser">Solicitações</a></li>
         <li ><a onclick="logout()" href="#content">Logout</a></li>
       </ul>
     </div>
@@ -47,9 +45,9 @@
   </nav>
   
   <ul id="dropdown2" class="dropdown-content">
-    <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
+    <li><a onclick="changePage('wantDonate')" href="#">Quero ser um Doador</a></li>
     <li class="divider"></li>
-    <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
+    <li><a onclick="changePage('iHospital')" href="#">Sou um HemoCentro</a></li>
   </ul>
   
   <ul id="slide-out" class="sidenav">
@@ -59,8 +57,8 @@
           <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
           <div class="collapsible-body">
             <ul>
-              <li><a class="sidenav-close" onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
-              <li><a class="sidenav-close" onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
+              <li><a class="sidenav-close" onclick="changePage('wantDonate')" href="#">Quero ser um Doador</a></li>
+              <li><a class="sidenav-close" onclick="changePage('iHospital')" href="#">Sou um HemoCentro</a></li>
             </ul>
           </div>
         </li>
@@ -224,6 +222,9 @@
   </div>
 </footer>
 
+
+<link href="./assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script>
   function whatMenu () {
     var hasLogin = JSON.parse(window.localStorage.getItem("login")) || {};
@@ -242,22 +243,25 @@
       
       if (hasLogin.checked == "banks"){
         document.getElementById("isHospital").style="";
+        document.getElementById("isUser").style="display: none";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('requireDonate')" href="#content" >Solicitar doação</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('about')" href="#">Sobre</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#">Meu Perfil</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('requireDonate')" href="#" >Solicitar doação</a></li>
+        <li ><a class="sidenav-close" onclick="logout()" href="#">Logout</a></li>
         `;
       } else {
         document.getElementById("isHospital").style="display: none";
+        document.getElementById("isUser").style="";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('about')" href="#">Sobre</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#">Meu Perfil</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('solicitacao')" href="#">Solicitações</a></li>
+        <li ><a class="sidenav-close" onclick="logout()" href="#">Logout</a></li>
         `;
       }
     } else {
@@ -268,9 +272,9 @@
       <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
       <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
       <li ><a class="dropdown-trigger" data-target="dropdown2">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li> 
-      <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
-      <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
-      <li ><a class="sidenav-close" onclick="changePage('login')" href="#content">Login</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#">Quem pode doar</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('about')" href="#">Sobre</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('login')" href="#">Login</a></li>
       `;
     }
   };
@@ -283,9 +287,8 @@
 </script>
 
 <script src="./assets/js/jquery.js"></script>
-<script src="./assets/js/materialize.js"></script>
+<script src="./assets/js/materialize.min.js"></script>
 <script src="./assets/js/map.js"></script>
-<script src="./assets/js/notifications.js"></script>
 <script src="./assets/js/pages.js"></script>
 <script src="./assets/js/http.js"></script>
 <script src="./assets/js/init.js"></script>

@@ -18,7 +18,7 @@
       coverTrigger: false,
       closeOnClick: true 
     });
-    
+
     $('select').formSelect();
     
     

@@ -173,6 +173,32 @@ function changePage(page){
             home.style.display = "none";
         });
         break;
+        case 'solicitacao':
+        let lastsRequest = JSON.parse(localStorate.get("login")).requestOfBlood;
+        let data = `<div id="solicitacao" class="container row">
+        <ul class="collection">`;
+        lastsRequest.forEach(
+            item => {
+                data += `
+                <li class="collection-item avatar">
+                <img src="./assets/images/Logo-email.png" alt="" class="circle">
+                    <span class="title">${item.name}</span>
+                    <p>Endereço: ${item.address}<br>
+                    Telefone: ${item.phone}<br>
+                    Data da solicitação: ${item.data.split('-').reverse().join('/')}
+                    </p>
+                </li>
+                `
+            }
+        )
+        data += `
+        </ul>
+        </div>
+        `;
+        view.innerHTML = data;
+        view.style.display = "";
+        home.style.display = "none";
+        break;
         default:
         view.style.display = "none";
         home.style.display = "";

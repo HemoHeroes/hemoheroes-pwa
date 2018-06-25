@@ -35,7 +35,6 @@ async function send() {
       "User": user
     }
   });
-  console.log('fetchs => ', await fetchs.json())
   console.log("Push Sent...");
 }
 
