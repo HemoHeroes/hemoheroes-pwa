@@ -178,13 +178,16 @@ function changePage(page){
         let data = '<div id="solicitacao" class="container row"><ul class="collection">';
         lastsRequest.forEach(
             item => {
+                let myDate = item.data || "-";
+                let splitDate = myDate.split('-');
+                myDate = splitDate.length > 1 ? myDate.split('-').reverse().join('/') : myDate;
                 data += `
                 <li class="collection-item avatar">
                 <img src="./assets/images/Logo-email.png" alt="" class="circle">
                     <span class="title">${item.name}</span>
                     <p>Endereço: ${item.address}<br>
                     Telefone: ${item.phone}<br>
-                    Data da solicitação: ${item.data.split('-').reverse().join('/')}
+                    Data da solicitação: ${myDate}
                     </p>
                 </li>
                 `

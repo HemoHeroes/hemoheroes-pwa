@@ -12,12 +12,7 @@
         gutter: 1,
         constrainWidth: false
       }
-    );    
-    
-    $(".dropdown-trigger").dropdown({
-      coverTrigger: false,
-      closeOnClick: true 
-    });
+    );
     
     $('select').formSelect();
     

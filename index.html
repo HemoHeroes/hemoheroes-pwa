@@ -21,7 +21,7 @@
   
   <nav class="navbar-wrapper grey lighten-5">
     <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <ul id="dropdown1" class="dropdown-content">
+    <ul id="dropdown1" class="dropdown-content" z-index="9999">
       <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
       <li class="divider"></li>
       <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
@@ -49,11 +49,7 @@
     </div>
   </nav>
   
-  <ul id="dropdown2" class="dropdown-content">
-    <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
-    <li class="divider"></li>
-    <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
-  </ul>
+  
   
   <ul id="slide-out" class="sidenav">
     <li class="no-padding">
@@ -232,7 +228,7 @@
     var hasLogin = JSON.parse(window.localStorage.getItem("login")) || {};
     var whatPage = window.localStorage.getItem("currentPage");
     if (hasLogin.token) {
-
+      
       document.getElementById("menuLogin").style="display: none";
       document.getElementById("menuLogout").style="";
       
@@ -273,7 +269,8 @@
       `
       <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
       <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
-      <li ><a class="dropdown-trigger" data-target="dropdown2">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li> 
+      <li ><a class="sidenav-close" onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
       <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
       <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
       <li ><a class="sidenav-close" onclick="changePage('login')" href="#content">Login</a></li>
