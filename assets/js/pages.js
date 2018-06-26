@@ -203,23 +203,28 @@ function changePage(page){
         case 'solicitacao':
         let lastsRequest = JSON.parse(localStorate.get("login")).requestOfBlood.reverse();
         let data = '<div id="solicitacao" class="container row"><ul class="collection">';
-        lastsRequest.forEach(
-            item => {
-                let myDate = item.data || "-";
-                let splitDate = myDate.split('-');
-                myDate = splitDate.length > 1 ? myDate.split('-').reverse().join('/') : myDate;
-                data += `
-                <li class="collection-item avatar">
-                <img src="./assets/images/Logo-email.png" alt="" class="circle">
-                <span class="title">${item.name}</span>
-                <p>Endereço: ${item.address}<br>
-                Telefone: ${item.phone || item.phones}<br>
-                Data da solicitação: ${myDate}
-                </p>
-                </li>
-                `
-            }
-        )
+
+        if (lastsRequest.length > 0) {
+            lastsRequest.forEach(
+                item => {
+                    let myDate = item.data || "-";
+                    let splitDate = myDate.split('-');
+                    myDate = splitDate.length > 1 ? myDate.split('-').reverse().join('/') : myDate;
+                    data += `
+                    <li class="collection-item avatar">
+                    <img src="./assets/images/Logo-email.png" alt="" class="circle">
+                    <span class="title">${item.name}</span>
+                    <p>Endereço: ${item.address}<br>
+                    Telefone: ${item.phone || item.phones}<br>
+                    Data da solicitação: ${myDate}
+                    </p>
+                    </li>
+                    `
+                }
+            )
+        } else {
+            data += "<h3 class='title'>Não há notificações neste momento</h3>";
+        }
         data += "</ul></div>";
         view.innerHTML = data;
         view.style.display = "";
