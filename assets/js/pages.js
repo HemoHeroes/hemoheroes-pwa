@@ -55,6 +55,9 @@ function changePage(page){
         .then(()=>{
             view.style.display = "";
             home.style.display = "none";
+            
+            document.getElementById("dateOfBirth").addEventListener('keydown', maskDate, true);
+            document.getElementById("lastDonate").addEventListener('keydown', maskDate, true);
         });
         break;
         case "iHospital":
@@ -62,6 +65,11 @@ function changePage(page){
         .then(()=>{
             view.style.display = "";
             home.style.display = "none";
+            
+            document.getElementById("cnpj").addEventListener('keydown', mCnpj, true);
+            document.getElementById("phone1").addEventListener('keydown', mTel, true);
+            document.getElementById("phone2").addEventListener('keydown', mTel, true);
+        
         });
         break;
         case "myPerfil":
