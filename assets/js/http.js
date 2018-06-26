@@ -263,7 +263,7 @@ const requireBlood = async (title, message) => {
     let hospital = await fetch(urlBase + "/banks/" + email).then(res=>res.json());
     hospital = {
         name: hospital[0].name,
-        address: hospital[0].address[0].street ? hospital[0].address[0].street : hospital[0].address[0],
+        address: hospital[0].address[0].street || hospital[0].address[0],
         phones: hospital[0].phones[0],
     };
     let data = {
