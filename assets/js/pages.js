@@ -69,7 +69,26 @@ function changePage(page){
             document.getElementById("cnpj").addEventListener('keydown', mCnpj, true);
             document.getElementById("phone1").addEventListener('keydown', mTel, true);
             document.getElementById("phone2").addEventListener('keydown', mTel, true);
-        
+            
+            let autocomplete = new google.maps.places.Autocomplete((document.getElementById('street')), {
+                types: ['geocode', 'establishment']
+            });
+            
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var place = autocomplete.getPlace();
+                console.log(place)
+                var address =  [
+                    {
+                        "latitude": place.geometry.location.lat(),
+                        "longitude": place.geometry.location.lng(),
+                        "street": place.formatted_address
+                    }
+                ];
+                console.log("address ==> ", address)
+                window.localStorage.setItem('address', JSON.stringify(address));               
+            });
+            
+            
         });
         break;
         case "myPerfil":
@@ -192,11 +211,11 @@ function changePage(page){
                 data += `
                 <li class="collection-item avatar">
                 <img src="./assets/images/Logo-email.png" alt="" class="circle">
-                    <span class="title">${item.name}</span>
-                    <p>Endereço: ${item.address}<br>
-                    Telefone: ${item.phone}<br>
-                    Data da solicitação: ${myDate}
-                    </p>
+                <span class="title">${item.name}</span>
+                <p>Endereço: ${item.address}<br>
+                Telefone: ${item.phone}<br>
+                Data da solicitação: ${myDate}
+                </p>
                 </li>
                 `
             }

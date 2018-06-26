@@ -54,6 +54,8 @@ const registerDonator = () => {
 };
 
 const registerBank = () => {
+    let address = window.localStorage.getItem('address');
+    address = address ? JSON.parse(address) : {};
     let data = {
         name : $('#name')[0].value,
         password : $('#password1')[0].value,
@@ -72,6 +74,7 @@ const registerBank = () => {
         data.address != ""
     ){
         data.phones = [data.phone1, data.phone2];
+        data.address = address;
         let url = urlBase + "banks";
         let options = {
             body: JSON.stringify(data),
@@ -274,7 +277,6 @@ const requireBlood = async (title, message) => {
 
     data.push.title = `O hemocentro ${hospital.name} solicita sua ajuda`;
     data.push.body = `Endereço: ${hospital.address}\nTelefone: ${hospital.phones}`;
-
     
     for(var i=0; i<$('[type=number]').length; i++){
         if (typesBlood[i].value) {
@@ -285,6 +287,8 @@ const requireBlood = async (title, message) => {
             );
         }
     }
+
+    if (data.bloods.length === 0) data.all = true;
 
     let options = {
         body: JSON.stringify(data),
