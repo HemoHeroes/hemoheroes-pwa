@@ -213,7 +213,7 @@ function changePage(page){
                 <img src="./assets/images/Logo-email.png" alt="" class="circle">
                 <span class="title">${item.name}</span>
                 <p>Endereço: ${item.address}<br>
-                Telefone: ${item.phone}<br>
+                Telefone: ${item.phone || item.phones}<br>
                 Data da solicitação: ${myDate}
                 </p>
                 </li>
