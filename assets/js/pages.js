@@ -201,7 +201,7 @@ function changePage(page){
         });
         break;
         case 'solicitacao':
-        let lastsRequest = JSON.parse(localStorate.get("login")).requestOfBlood;
+        let lastsRequest = JSON.parse(localStorate.get("login")).requestOfBlood.reverse();
         let data = '<div id="solicitacao" class="container row"><ul class="collection">';
         lastsRequest.forEach(
             item => {
