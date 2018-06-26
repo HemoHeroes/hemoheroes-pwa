@@ -1,6 +1,6 @@
 "use strict";
 
-const urlBase = "./api/v1/";
+const urlBase = "https://www.hemoheroes.com/api/v1/";
 
 let post = (url, param) => fetch(url, param).then(response => response.json());
 
@@ -252,24 +252,37 @@ const saveDataBank = () => {
     }
 };
 
-const requireBlood = (title, message) => {
+const requireBlood = async (title, message) => {
+    try {
     var typesBlood = $('[type=number]');
-
-    for(var i=0; i<$('[type=number]').length; i++){
-        console.log(typesBlood[i].id, typesBlood[i].value);
-    }
-
+    let email = window.localStorage.getItem('login');
+    email = JSON.parse(email).email;
+    let hospital = await fetch(urlBase + "/banks/" + email).then(res=>res.json());
+    hospital = {
+        name: hospital[0].name,
+        address: hospital[0].address[0],
+        phones: hospital[0].phones[0],
+    };
     let data = {
         "push": {
             "title": title || "Solicitamos sua colaboração.", 
             "body": message || "Nossos hemocentros estão precisando de doadores, nos ajude."
         },
+        "hospital": hospital,
         "bloods": []
     };
 
+    data.push.title = `O hemocentro ${hospital.name} solicita sua ajuda`;
+    data.push.body = `Endereço: ${hospital.address}\nTelefone: ${hospital.phones}`;
+
+    
     for(var i=0; i<$('[type=number]').length; i++){
         if (typesBlood[i].value) {
-            data.bloods.push(typesBlood[i].id);
+            data.bloods.push(
+                /\-/gi.test(typesBlood[i].id) == true ? 
+                typesBlood[i].id.toLocaleUpperCase() : 
+                (typesBlood[i].id + "+").toLocaleUpperCase()
+            );
         }
     }
 
@@ -290,7 +303,6 @@ const requireBlood = (title, message) => {
         console.log("error push => ", error)
         showToast("Ocorreu algum erro, tente novamente mais tarde!", 1000);
     });
+}
+catch(er) {console.log("ERRERER ", er)}
 };
-
-// requireBlood("testando 1", "my browser 1 push")
-// requireBlood();

@@ -27,7 +27,7 @@ async function send() {
   let user = window.localStorage.getItem("login") == null ? null : JSON.parse(window.localStorage.getItem("login")).email;
   // Send Push Notification
   console.log("Sending Push...");
-  let fetchs = await fetch("./api/v1/notifications", {
+  let fetchs = await fetch("https://www.hemoheroes.com/api/v1/notifications", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {
@@ -35,7 +35,6 @@ async function send() {
       "User": user
     }
   });
-  console.log('fetchs => ', await fetchs.json())
   console.log("Push Sent...");
 }
 

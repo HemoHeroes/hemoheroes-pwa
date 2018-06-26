@@ -7,11 +7,9 @@ self.addEventListener('install', event => {
                 './',
                 './assets/css/material.woff2',
                 './assets/css/materialize.min.css',
-                './assets/css/materialize.css',
                 './assets/css/style.css',
                 './assets/js/jquery.js',
                 './assets/js/materialize.min.js',
-                './assets/js/materialize.js',
                 './assets/js/pages.js',
                 './assets/js/notifications.js',
                 './assets/js/map.js',
@@ -22,6 +20,7 @@ self.addEventListener('install', event => {
                 './assets/images/hemoheroes-logo.png',
                 './assets/images/hospital.jpg',
                 './assets/images/Logo-email.png',
+                './assets/images/favicon.ico',
                 './index.html',
                 './404.html',
                 './views/about.html',
@@ -73,10 +72,13 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener("push", e => {
-  const data = e.data.json();
-  console.log("Push Recieved...");
-  self.registration.showNotification(data.title, {
-    body: data.body,
-    icon: "./assets/images/Logo-email.png"
-  });
+    const data = e.data.json();
+    console.log("Push Recieved...");
+    self.registration.showNotification(data.title, {
+        body: data.body,
+        icon: "./assets/images/Logo-email.png"
+    });
 });
+
+self.addEventListener('notificationclick',function(event){event.notification.close();event.waitUntil(self.clients.openWindow('https://www.hemoheroes.com/'))})
+

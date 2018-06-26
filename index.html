@@ -10,9 +10,11 @@
   <title>Hemo Heroes - Progressive Web App!!!</title>
   
   <link rel="manifest" href="./manifest.json">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
   
   <!-- CSS  -->
-  <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body onload="whatMenu()">
@@ -31,6 +33,7 @@
         <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
         <li ><a onclick="changePage('requireDonate')" href="#content" id="isHospital">Solicitar doação</a></li>
+        <li ><a onclick="changePage('solicitacao')" href="#" id="isUser">Solicitações</a></li>
         <li ><a onclick="logout()" href="#content">Logout</a></li>
       </ul>
     </div>
@@ -229,7 +232,7 @@
     var hasLogin = JSON.parse(window.localStorage.getItem("login")) || {};
     var whatPage = window.localStorage.getItem("currentPage");
     if (hasLogin.token) {
-      //hasDonate hasPerfil isHospital2 hasLougout hasLogin
+
       document.getElementById("menuLogin").style="display: none";
       document.getElementById("menuLogout").style="";
       
@@ -242,22 +245,25 @@
       
       if (hasLogin.checked == "banks"){
         document.getElementById("isHospital").style="";
+        document.getElementById("isUser").style="display: none";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
         <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
         <li ><a class="sidenav-close" onclick="changePage('requireDonate')" href="#content" >Solicitar doação</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        <li ><a class="sidenav-close" onclick="logout()" href="#">Logout</a></li>
         `;
       } else {
         document.getElementById("isHospital").style="display: none";
+        document.getElementById("isUser").style="";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
         <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('solicitacao')" href="#">Solicitações</a></li>
+        <li ><a class="sidenav-close" onclick="logout()" href="#">Logout</a></li>
         `;
       }
     } else {
@@ -283,7 +289,7 @@
 </script>
 
 <script src="./assets/js/jquery.js"></script>
-<script src="./assets/js/materialize.js"></script>
+<script src="./assets/js/materialize.min.js"></script>
 <script src="./assets/js/map.js"></script>
 <script src="./assets/js/notifications.js"></script>
 <script src="./assets/js/pages.js"></script>
