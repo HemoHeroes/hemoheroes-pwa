@@ -21,7 +21,7 @@ const currentPage = localStorate.get("currentPage");
 if(currentPage) changePage(currentPage);
 else changePage("home");
 
-function changePage(page){
+async function changePage(page){
     localStorate.set("currentPage", page);
     whatMenu();
     switch(page){
@@ -201,7 +201,9 @@ function changePage(page){
         });
         break;
         case 'solicitacao':
-        let lastsRequest = JSON.parse(localStorate.get("login")).requestOfBlood.reverse();
+        let email = JSON.parse(localStorate.get("login")).email;
+        let lastsRequest = await fetch("https://www.hemoheroes.com/api/v1/donators/requestBlood/"+email).then(res=>res.json());
+        lastsRequest = lastsRequest.length > 0 ? lastsRequest[0].requestOfBlood.reverse() : JSON.parse(localStorate.get("login")).requestOfBlood.reverse();
         let data = '<div id="solicitacao" class="container row"><ul class="collection">';
 
         if (lastsRequest.length > 0) {
