@@ -21,7 +21,7 @@ const currentPage = localStorate.get("currentPage");
 if(currentPage) changePage(currentPage);
 else changePage("home");
 
-function changePage(page){
+async function changePage(page){
     localStorate.set("currentPage", page);
     whatMenu();
     switch(page){
@@ -55,6 +55,9 @@ function changePage(page){
         .then(()=>{
             view.style.display = "";
             home.style.display = "none";
+            
+            document.getElementById("dateOfBirth").addEventListener('keydown', maskDate, true);
+            document.getElementById("lastDonate").addEventListener('keydown', maskDate, true);
         });
         break;
         case "iHospital":
@@ -62,6 +65,30 @@ function changePage(page){
         .then(()=>{
             view.style.display = "";
             home.style.display = "none";
+            
+            document.getElementById("cnpj").addEventListener('keydown', mCnpj, true);
+            document.getElementById("phone1").addEventListener('keydown', mTel, true);
+            document.getElementById("phone2").addEventListener('keydown', mTel, true);
+            
+            let autocomplete = new google.maps.places.Autocomplete((document.getElementById('street')), {
+                types: ['geocode', 'establishment']
+            });
+            
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var place = autocomplete.getPlace();
+                console.log(place)
+                var address =  [
+                    {
+                        "latitude": place.geometry.location.lat(),
+                        "longitude": place.geometry.location.lng(),
+                        "street": place.formatted_address
+                    }
+                ];
+                console.log("address ==> ", address)
+                window.localStorage.setItem('address', JSON.stringify(address));               
+            });
+            
+            
         });
         break;
         case "myPerfil":
@@ -172,6 +199,38 @@ function changePage(page){
             view.style.display = "";
             home.style.display = "none";
         });
+        break;
+        case 'solicitacao':
+        let email = JSON.parse(localStorate.get("login")).email;
+        let lastsRequest = await fetch("https://www.hemoheroes.com/api/v1/donators/requestBlood/"+email).then(res=>res.json());
+        lastsRequest = lastsRequest.length > 0 ? lastsRequest[0].requestOfBlood.reverse() : JSON.parse(localStorate.get("login")).requestOfBlood.reverse();
+        let data = '<div id="solicitacao" class="container row"><ul class="collection">';
+
+        if (lastsRequest.length > 0) {
+            lastsRequest.forEach(
+                item => {
+                    let myDate = item.data || "-";
+                    let splitDate = myDate.split('-');
+                    myDate = splitDate.length > 1 ? myDate.split('-').reverse().join('/') : myDate;
+                    data += `
+                    <li class="collection-item avatar">
+                    <img src="./assets/images/Logo-email.png" alt="" class="circle">
+                    <span class="title">${item.name}</span>
+                    <p>Endereço: ${item.address}<br>
+                    Telefone: ${item.phone || item.phones}<br>
+                    Data da solicitação: ${myDate}
+                    </p>
+                    </li>
+                    `
+                }
+            )
+        } else {
+            data += "<h3 class='title'>Não há notificações neste momento</h3>";
+        }
+        data += "</ul></div>";
+        view.innerHTML = data;
+        view.style.display = "";
+        home.style.display = "none";
         break;
         default:
         view.style.display = "none";

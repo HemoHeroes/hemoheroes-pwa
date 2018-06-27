@@ -8,10 +8,10 @@ function myMap() {
             
             var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
             
-            fetch("./api/v1/banks")
+            fetch("https://www.hemoheroes.com/api/v1/banks")
             .then(res=>res.json())
             .then(data => {
-                data.forEach((element, index) => {
+                data.forEach((element) => {
                     if(element.address[0].latitude && element.address[0].longitude){
                         let bankLocation = new google.maps.LatLng(element.address[0].latitude, element.address[0].longitude);
                         let bankMarker = new google.maps.Marker({

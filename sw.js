@@ -7,11 +7,9 @@ self.addEventListener('install', event => {
                 './',
                 './assets/css/material.woff2',
                 './assets/css/materialize.min.css',
-                './assets/css/materialize.css',
                 './assets/css/style.css',
                 './assets/js/jquery.js',
                 './assets/js/materialize.min.js',
-                './assets/js/materialize.js',
                 './assets/js/pages.js',
                 './assets/js/notifications.js',
                 './assets/js/map.js',
@@ -22,6 +20,21 @@ self.addEventListener('install', event => {
                 './assets/images/hemoheroes-logo.png',
                 './assets/images/hospital.jpg',
                 './assets/images/Logo-email.png',
+                './assets/images/favicon.ico',
+                './assets/images/114x114.png',
+                './assets/images/144x144.png',
+                './assets/images/180x180.png',
+                './assets/images/310x310.png',
+                './assets/images/48x48.png',
+                './assets/images/60x60.png',
+                './assets/images/76x76.png',
+                './assets/images/120x120.png',
+                './assets/images/152x152.png',
+                './assets/images/192x192.png',
+                './assets/images/36x36.png',
+                './assets/images/57x57.png',
+                './assets/images/72x72.png',
+                './assets/images/96x96.png',
                 './index.html',
                 './404.html',
                 './views/about.html',
@@ -73,10 +86,13 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener("push", e => {
-  const data = e.data.json();
-  console.log("Push Recieved...");
-  self.registration.showNotification(data.title, {
-    body: data.body,
-    icon: "./assets/images/Logo-email.png"
-  });
+    const data = e.data.json();
+    console.log("Push Recieved...");
+    self.registration.showNotification(data.title, {
+        body: data.body,
+        icon: "./assets/images/Logo-email.png"
+    });
 });
+
+self.addEventListener('notificationclick',function(event){event.notification.close();event.waitUntil(self.clients.openWindow('https://www.hemoheroes.com/'))})
+

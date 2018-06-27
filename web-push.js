@@ -10,24 +10,19 @@ if ("serviceWorker" in navigator) {
 // Register SW, Register Push, Send Push
 async function send() {
   // Register Service Worker
-  console.log("Registering service worker...");
   const register = await navigator.serviceWorker.register("/sw.js", {
     scope: "/"
   });
-  console.log("Service Worker Registered...");
 
   // Register Push
-  console.log("Registering Push...");
   const subscription = await register.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
   });
-  console.log("Push Registered...");
 
   let user = window.localStorage.getItem("login") == null ? null : JSON.parse(window.localStorage.getItem("login")).email;
-  // Send Push Notification
-  console.log("Sending Push...");
-  let fetchs = await fetch("./api/v1/notifications", {
+
+  let fetchs = await fetch("https://www.hemoheroes.com/api/v1/notifications", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {
@@ -35,8 +30,7 @@ async function send() {
       "User": user
     }
   });
-  console.log('fetchs => ', await fetchs.json())
-  console.log("Push Sent...");
+  return fetchs;
 }
 
 function urlBase64ToUint8Array(base64String) {

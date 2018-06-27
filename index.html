@@ -10,16 +10,17 @@
   <title>Hemo Heroes - Progressive Web App!!!</title>
   
   <link rel="manifest" href="./manifest.json">
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
   
   <!-- CSS  -->
-  <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body onload="whatMenu()">
-  
   <nav class="navbar-wrapper grey lighten-5">
     <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <ul id="dropdown1" class="dropdown-content">
+    <ul id="dropdown1" class="dropdown-content" z-index="9999">
       <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
       <li class="divider"></li>
       <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
@@ -31,6 +32,7 @@
         <li ><a onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
         <li ><a onclick="changePage('requireDonate')" href="#content" id="isHospital">Solicitar doação</a></li>
+        <li ><a onclick="changePage('solicitacao')" href="#" id="isUser">Solicitações</a></li>
         <li ><a onclick="logout()" href="#content">Logout</a></li>
       </ul>
     </div>
@@ -46,11 +48,7 @@
     </div>
   </nav>
   
-  <ul id="dropdown2" class="dropdown-content">
-    <li><a onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
-    <li class="divider"></li>
-    <li><a onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
-  </ul>
+  
   
   <ul id="slide-out" class="sidenav">
     <li class="no-padding">
@@ -229,7 +227,7 @@
     var hasLogin = JSON.parse(window.localStorage.getItem("login")) || {};
     var whatPage = window.localStorage.getItem("currentPage");
     if (hasLogin.token) {
-      //hasDonate hasPerfil isHospital2 hasLougout hasLogin
+      
       document.getElementById("menuLogin").style="display: none";
       document.getElementById("menuLogout").style="";
       
@@ -242,22 +240,25 @@
       
       if (hasLogin.checked == "banks"){
         document.getElementById("isHospital").style="";
+        document.getElementById("isUser").style="display: none";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
         <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
         <li ><a class="sidenav-close" onclick="changePage('requireDonate')" href="#content" >Solicitar doação</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        <li ><a class="sidenav-close" onclick="logout()" href="#">Logout</a></li>
         `;
       } else {
         document.getElementById("isHospital").style="display: none";
+        document.getElementById("isUser").style="";
         document.getElementById("mobile-menu").innerHTML = `
         <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
         <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
         <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
         <li ><a class="sidenav-close" onclick="changePage('myPerfil')" href="#perfil">Meu Perfil</a></li>
-        <li ><a class="sidenav-close" onclick="changePage('home')" href="#">Logout</a></li>
+        <li ><a class="sidenav-close" onclick="changePage('solicitacao')" href="#">Solicitações</a></li>
+        <li ><a class="sidenav-close" onclick="logout()" href="#">Logout</a></li>
         `;
       }
     } else {
@@ -267,7 +268,8 @@
       `
       <li ><a class="sidenav-close" onclick="changePage('home')">Principal</a></li>
       <li ><a class="sidenav-close" href="#info">Como funciona</a></li>
-      <li ><a class="dropdown-trigger" data-target="dropdown2">Onde doar<i class="material-icons right">arrow_drop_down</i></a></li> 
+      <li ><a class="sidenav-close" onclick="changePage('wantDonate')" href="#content">Quero ser um Doador</a></li>
+      <li ><a class="sidenav-close" onclick="changePage('iHospital')" href="#content">Sou um HemoCentro</a></li>
       <li ><a class="sidenav-close" onclick="changePage('canDonate')" href="#content">Quem pode doar</a></li>
       <li ><a class="sidenav-close" onclick="changePage('about')" href="#content">Sobre</a></li>
       <li ><a class="sidenav-close" onclick="changePage('login')" href="#content">Login</a></li>
@@ -283,14 +285,14 @@
 </script>
 
 <script src="./assets/js/jquery.js"></script>
-<script src="./assets/js/materialize.js"></script>
+<script src="./assets/js/materialize.min.js"></script>
 <script src="./assets/js/map.js"></script>
 <script src="./assets/js/notifications.js"></script>
 <script src="./assets/js/pages.js"></script>
 <script src="./assets/js/http.js"></script>
 <script src="./assets/js/init.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCDgXVP7UODM2QZLil_Mm4MXPGxVmnbZIc" async defer></script>
 
 
 <script src="./web-push.js"></script>
@@ -313,5 +315,39 @@
   }
 </script>
 
+<script>
+  function mTel(event) {
+    let tel = this.value
+    tel=tel.replace(/\D/g,"")
+    tel=tel.replace(/^(\d)/,"($1")
+    tel=tel.replace(/(.{3})(\d)/,"$1)$2")
+    if(tel.length == 9) {
+      tel=tel.replace(/(.{1})$/,"-$1")
+    } else if (tel.length == 10) {
+      tel=tel.replace(/(.{2})$/,"-$1")
+    } else if (tel.length == 11) {
+      tel=tel.replace(/(.{3})$/,"-$1")
+    } else if (tel.length == 12) {
+      tel=tel.replace(/(.{4})$/,"-$1")
+    } else if (tel.length > 12) {
+      tel=tel.replace(/(.{4})$/,"-$1")
+    }
+    this.value = tel;
+  };
+  function mCnpj(event) { 
+    let cnpj = this.value;
+    cnpj=cnpj.replace(/\D/g,"")
+    cnpj=cnpj.replace(/^(\d{2})(\d)/,"$1.$2")
+    cnpj=cnpj.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
+    cnpj=cnpj.replace(/\.(\d{3})(\d)/,".$1/$2")
+    cnpj=cnpj.replace(/(\d{4})(\d)/,"$1-$2")
+    this.value = cnpj;
+  };
+  function maskDate(event)
+  {
+    let myDate = this.value;
+    this.value = myDate.replace(/^(\d\d)(\d{2})(\d{0,4}).*/,"$1/$2/$3");
+  };
+</script>
 </body>
 </html>
